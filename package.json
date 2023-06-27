@@ -10,17 +10,19 @@
     "@types/node": "^16.18.36",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
+    "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:mocha": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/tests/**/*.ts'",
+    "test": "nyc --check-coverage --reporter=html --reporter=text-summary mocha src/test/*.spec.ts",
+    "mocha:direct": "mocha"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +41,40 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "**/*.ts"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true,
+    "branches": 80,
+    "lines": 80,
+    "functions": 80,
+    "statements": 80
+  },
+  "devDependencies": {
+    "@pact-foundation/pact": "^11.0.2",
+    "@types/chai": "^4.3.5",
+    "@types/chai-as-promised": "^7.1.5",
+    "@types/mocha": "^10.0.1",
+    "@types/sinon": "^10.0.15",
+    "@types/sinon-chai": "^3.2.9",
+    "chai": "^4.3.7",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "sinon": "^15.2.0",
+    "sinon-chai": "^3.7.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
   }
 }
