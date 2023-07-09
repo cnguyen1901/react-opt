@@ -1,0 +1,14 @@
+name: Hello World
+author: Chris Nguyen
+description: "Greet someone with this simple action"
+inputs:
+  who-to-greet:
+    description: "Who to greet"
+    required: true
+    default: "Chris"
+outputs:
+  time:
+    description: "The time we greeted you"
+runs:
+  using: "node12"
+  main: "index.js"
